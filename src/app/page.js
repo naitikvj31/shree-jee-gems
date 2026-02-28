@@ -88,7 +88,7 @@ function HomeContent() {
                 Each piece tells a story of tradition, craftsmanship, and enduring beauty.
               </p>
               <div className={styles.heroBtns}>
-                <Link href="/?category=rings" className={styles.heroBtn}>
+                <Link href="/#products" className={styles.heroBtn}>
                   Shop Now <HiOutlineArrowRight />
                 </Link>
                 <Link href="/about" className={styles.heroBtnOutline}>
@@ -128,7 +128,7 @@ function HomeContent() {
       )}
 
       {/* ═══ Product Header ═══ */}
-      <div className={styles.productHeader}>
+      <div className={styles.productHeader} id="products">
         <div className={`container ${styles.productHeaderInner}`}>
           <div className={styles.headerLeft}>
             <h1 className={styles.pageTitle}>
