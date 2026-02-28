@@ -18,7 +18,7 @@ const categories = [
     { name: 'Bangles', slug: 'bangles' },
 ];
 
-const currencies = ['USD', 'THB', 'JPY', 'ZAR'];
+const currencies = ['INR', 'USD', 'THB', 'JPY', 'ZAR'];
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);

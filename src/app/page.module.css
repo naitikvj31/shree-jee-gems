@@ -1,13 +1,16 @@
 /* ===== HOMEPAGE — PREMIUM LUXURY ===== */
 .home {
-  min-height: 60vh;
-  background: var(--white);
+  min-height: 100vh;
+  background: linear-gradient(180deg, #FDFBF6 0%, #FAF7F0 50%, #F7F3EA 100%);
 }
 
 /* ═══ HERO BANNER ═══ */
 .hero {
-  background: linear-gradient(135deg, #FDF8F0 0%, #FAF5E9 30%, #F5EDD8 100%);
-  padding: 64px 0 72px;
+  background: linear-gradient(160deg, #FDF8F0 0%, #FAF5E9 40%, #F5EDD8 100%);
+  min-height: calc(100vh - var(--navbar-height) - var(--category-bar-height));
+  display: flex;
+  align-items: center;
+  padding: 48px 0 56px;
   position: relative;
   overflow: hidden;
   border-bottom: 2px solid transparent;
@@ -208,9 +211,9 @@
 
 /* ═══ Product Header ═══ */
 .productHeader {
-  background: var(--white);
+  background: linear-gradient(180deg, #F9F5ED, #FAF7F0);
   border-bottom: 1px solid var(--border-light);
-  padding: 24px 0;
+  padding: 28px 0;
   animation: fadeIn 0.4s ease;
 }
 
@@ -275,7 +278,7 @@
 
 /* ═══ Product Grid ═══ */
 .gridContainer {
-  padding: 32px 0 56px;
+  padding: 36px 0 56px;
 }
 
 .grid {

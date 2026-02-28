@@ -5,6 +5,7 @@ import { createContext, useContext, useState, useEffect, useCallback } from 'rea
 const CartContext = createContext();
 
 const CURRENCY_RATES = {
+    INR: { symbol: '₹', rate: 83.5 },
     USD: { symbol: '$', rate: 1 },
     THB: { symbol: '฿', rate: 34.5 },
     JPY: { symbol: '¥', rate: 149.5 },
@@ -14,7 +15,7 @@ const CURRENCY_RATES = {
 export function CartProvider({ children }) {
     const [cart, setCart] = useState([]);
     const [wishlist, setWishlist] = useState([]);
-    const [currency, setCurrency] = useState('USD');
+    const [currency, setCurrency] = useState('INR');
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [toast, setToast] = useState('');
 
@@ -57,8 +58,8 @@ export function CartProvider({ children }) {
     }, []);
 
     const convertPrice = useCallback((priceUSD) => {
-        const { symbol, rate } = CURRENCY_RATES[currency] || CURRENCY_RATES.USD;
-        const converted = (priceUSD * rate).toFixed(currency === 'JPY' ? 0 : 2);
+        const { symbol, rate } = CURRENCY_RATES[currency] || CURRENCY_RATES.INR;
+        const converted = (priceUSD * rate).toFixed((currency === 'JPY' || currency === 'INR') ? 0 : 2);
         return `${symbol}${Number(converted).toLocaleString()}`;
     }, [currency]);
 
