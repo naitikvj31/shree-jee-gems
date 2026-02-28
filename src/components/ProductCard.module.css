@@ -1,0 +1,348 @@
+/* ProductCard — White-Gold Theme */
+.card {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.cardVisible {
+    animation: cardFadeIn 0.5s ease forwards;
+}
+
+@keyframes cardFadeIn {
+    from {
+        opacity: 0.3;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(184, 134, 11, 0.12);
+    border-color: var(--gold-border);
+}
+
+/* Image */
+.imageWrap {
+    display: block;
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: var(--gray-100);
+}
+
+.productImage {
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.card:hover .productImage {
+    transform: scale(1.06);
+}
+
+/* Placeholder */
+.imagePlaceholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: transform 0.4s ease;
+}
+
+.card:hover .imagePlaceholder {
+    transform: scale(1.04);
+}
+
+.phEmoji {
+    font-size: 48px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.phName {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 0 12px;
+}
+
+.phMaterial {
+    font-size: 10px;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Badges */
+.badges {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 2;
+}
+
+/* Hover Overlay */
+.hoverOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(61, 50, 37, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+.card:hover .hoverOverlay {
+    opacity: 1;
+}
+
+.quickView {
+    padding: 10px 22px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-primary);
+    background: var(--white);
+    border-radius: var(--radius-full);
+    transform: translateY(8px);
+    opacity: 0;
+    transition: all 0.3s ease 0.1s;
+    box-shadow: var(--shadow-md);
+}
+
+.card:hover .quickView {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.quickView:hover {
+    background: var(--gold);
+    color: var(--white);
+}
+
+/* Wishlist Button */
+.wishBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    border-radius: 50%;
+    color: var(--text-muted);
+    z-index: 3;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+}
+
+.wishBtn:hover {
+    color: #e11d48;
+    transform: scale(1.1);
+}
+
+.wishlisted {
+    color: #e11d48 !important;
+}
+
+/* Info */
+.info {
+    padding: 14px 16px 18px;
+}
+
+.name {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 4px;
+    transition: color 0.2s;
+}
+
+.name:hover {
+    color: var(--gold);
+}
+
+.material {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ratingRow {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.stars {
+    display: flex;
+    gap: 1px;
+    font-size: 13px;
+}
+
+.starFull {
+    color: var(--gold);
+}
+
+.starEmpty {
+    color: var(--gray-300);
+}
+
+.reviewCount {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.priceRow {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.price {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.oldPrice {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+.addToCartBtn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    background: var(--gold);
+    border-radius: var(--radius-sm);
+    transition: all 0.25s ease;
+}
+
+.addToCartBtn:hover {
+    background: var(--gold-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-gold);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 767px) {
+    .phEmoji {
+        font-size: 36px;
+    }
+
+    .phName {
+        font-size: 11px;
+    }
+
+    .info {
+        padding: 10px 12px 14px;
+    }
+
+    .name {
+        font-size: 13px;
+    }
+
+    .price {
+        font-size: 15px;
+    }
+
+    .addToCartBtn {
+        padding: 8px;
+        font-size: 11px;
+    }
+
+    .wishBtn {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .phEmoji {
+        font-size: 28px;
+    }
+
+    .phName {
+        font-size: 10px;
+    }
+
+    .phMaterial {
+        display: none;
+    }
+
+    .material {
+        display: none;
+    }
+
+    .ratingRow {
+        margin-bottom: 6px;
+    }
+
+    .info {
+        padding: 8px 10px 12px;
+    }
+
+    .name {
+        font-size: 12px;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+    }
+
+    .price {
+        font-size: 14px;
+    }
+
+    .oldPrice {
+        font-size: 11px;
+    }
+
+    .addToCartBtn {
+        padding: 7px;
+        font-size: 10px;
+    }
+
+    .quickView {
+        display: none;
+    }
+}
