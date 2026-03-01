@@ -164,16 +164,15 @@
     width: 100%;
     padding: 14px 16px 14px 44px;
     font-size: 14px;
-    border: 1.5px solid var(--border);
+    border: 1px solid #CBD5E1;
     border-radius: var(--radius-sm);
-    background: var(--off-white);
+    background: #FFFFFF;
     color: var(--text-primary);
     transition: all 0.3s ease;
 }
 
 .inputGroup input:focus {
     border-color: var(--gold);
-    background: var(--white);
     box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.08);
 }
 

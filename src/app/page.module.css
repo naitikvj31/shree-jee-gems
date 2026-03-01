@@ -209,21 +209,18 @@
   width: 110px;
   height: 110px;
   border-radius: 16px;
-  /* Rounded Square */
   background: linear-gradient(135deg, #0f1c3f 0%, #12224A 100%);
-  /* Dark attractive background for jewelry */
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 8px 24px rgba(18, 34, 74, 0.15);
+  transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(18, 34, 74, 0.1);
 }
 
 .catCard:hover .catCardImg {
-  box-shadow: 0 12px 32px rgba(18, 34, 74, 0.25);
-  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(18, 34, 74, 0.2);
 }
 
 .catCardName {

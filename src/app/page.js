@@ -21,7 +21,7 @@ const browseCategories = [
   { name: 'Crown', slug: 'crown', image: '/categories/crown.png' },
   { name: 'Earrings', slug: 'earrings', image: '/categories/earrings.png' },
   { name: 'Tops', slug: 'tops', image: '/categories/tops.png' },
-  { name: 'Chains', slug: 'chains', image: '/categories/chains.png' },
+  { name: 'Chains', slug: 'chains', image: '/categories/bracelet.png' },
   { name: 'Mangtika', slug: 'mangtika', image: '/categories/mangtika.png' },
   { name: 'Necklace', slug: 'necklace', image: '/categories/necklace.png' },
   { name: 'Chokar', slug: 'chokar', image: '/categories/chokar.png' },
