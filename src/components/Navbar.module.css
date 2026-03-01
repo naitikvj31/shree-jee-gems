@@ -150,10 +150,29 @@
     transition: color 0.2s;
     padding: 2px 12px;
     text-transform: uppercase;
+    position: relative;
+}
+
+.aboutBrandLink::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 12px;
+    width: calc(100% - 24px);
+    height: 2px;
+    background-color: #FFFFFF;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .aboutBrandLink:hover {
     color: #FFFFFF;
+}
+
+.aboutBrandLink:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 /* ═══ Dropdown ═══ */
@@ -381,67 +400,97 @@
     padding: 24px;
     display: flex;
     flex-direction: column;
+    gap: 8px;
 }
 
 .drawerSection {
-    margin-bottom: 20px;
+    background: #F8FAFC;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #E2E8F0;
+    transition: all 0.3s ease;
 }
 
 .drawerSectionTitle {
-    display: block;
-    padding: 12px 0 8px;
-    font-size: 11px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    font-size: 14px;
     font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #64748B;
+    letter-spacing: 0.5px;
+    color: #0F172A;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.drawerSectionTitleActive {
+    background: #12224A;
+    color: #FFFFFF;
+}
+
+.drawerSubBox {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background: #FFFFFF;
+}
+
+.subBoxOpen {
+    max-height: 600px;
+    /* enough to show all items */
+    overflow-y: auto;
+    border-top: 1px solid #E2E8F0;
 }
 
 .drawerLink {
     display: block;
-    padding: 12px 0 12px 12px;
+    padding: 14px 20px 14px 24px;
     font-size: 14px;
     font-weight: 500;
-    color: #334155;
+    color: #475569;
     text-decoration: none;
-    transition: color 0.2s, background 0.2s;
-    background: transparent;
-    text-align: left;
-    border-radius: 6px;
-    width: 100%;
-    border: none;
+    transition: background 0.2s, color 0.2s;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.drawerLink:last-child {
+    border-bottom: none;
 }
 
 .drawerLinkMain {
     display: block;
-    padding: 14px;
+    padding: 16px 20px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     color: #0F172A;
     text-decoration: none;
     background: #F8FAFC;
-    border-radius: 6px;
-    margin-bottom: 8px;
-    text-align: left;
-    width: 100%;
+    border-radius: 8px;
     border: 1px solid #E2E8F0;
+    transition: all 0.2s;
 }
 
 .drawerLink:hover {
     color: #12224A;
-    background: #F1F5F9;
+    background: #F8FAFC;
+    padding-left: 28px;
+    /* subtle shift */
 }
 
 .drawerLinkMain:hover {
-    color: #12224A;
-    background: #E2E8F0;
-    border-color: #CBD5E1;
+    background: #12224A;
+    color: #FFFFFF;
+    border-color: #12224A;
 }
 
 .drawerDivider {
     height: 1px;
-    background: #E2E8F0;
-    margin: 16px 0 24px;
+    background: #CBD5E1;
+    margin: 12px 0 12px;
 }
 
 /* ═══ RESPONSIVE ═══ */

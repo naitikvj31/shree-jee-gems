@@ -223,12 +223,20 @@ export default function Navbar() {
                     {navLinks.map((link, i) => (
                         link.children ? (
                             <div key={i} className={styles.drawerSection}>
-                                <span className={styles.drawerSectionTitle}>{link.name}</span>
-                                {link.children.map(child => (
-                                    <Link key={child.name} href={`/?category=${child.slug}`} onClick={() => setIsOpen(false)} className={styles.drawerLink}>
-                                        {child.name}
-                                    </Link>
-                                ))}
+                                <button
+                                    className={`${styles.drawerSectionTitle} ${activeDropdown === i ? styles.drawerSectionTitleActive : ''}`}
+                                    onClick={() => setActiveDropdown(activeDropdown === i ? null : i)}
+                                >
+                                    {link.name}
+                                    {activeDropdown === i ? <HiOutlineX size={16} /> : <HiOutlineChevronDown size={16} />}
+                                </button>
+                                <div className={`${styles.drawerSubBox} ${activeDropdown === i ? styles.subBoxOpen : ''}`}>
+                                    {link.children.map(child => (
+                                        <Link key={child.name} href={`/?category=${child.slug}`} onClick={() => setIsOpen(false)} className={styles.drawerLink}>
+                                            {child.name}
+                                        </Link>
+                                    ))}
+                                </div>
                             </div>
                         ) : (
                             <Link key={i} href={link.slug || '#'} onClick={() => setIsOpen(false)} className={styles.drawerLinkMain}>{link.name}</Link>
