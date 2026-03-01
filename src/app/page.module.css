@@ -308,7 +308,8 @@
 
 /* ═══ Product Grid ═══ */
 .gridContainer {
-  padding: 24px 0 80px;
+  padding-top: 24px;
+  padding-bottom: 80px;
   background: #FFFFFF;
 }
 

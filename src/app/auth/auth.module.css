@@ -81,6 +81,22 @@
     flex-direction: column;
 }
 
+.mobileBrand {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.mobileBrandTitle {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    color: #12224A;
+    margin-top: 8px;
+    letter-spacing: 1.5px;
+}
+
 /* Toggle */
 .toggle {
     display: flex;
@@ -277,16 +293,40 @@
     }
 
     .formSide {
-        padding: 32px 20px;
+        padding: 24px 16px;
     }
 
-    .formTitle,
+    .mobileBrand {
+        display: flex;
+    }
+
+    .formTitle {
+        text-align: center;
+        font-size: 22px;
+    }
+
     .formSubtitle {
         text-align: center;
+        margin-bottom: 20px;
+        font-size: 12px;
     }
 
     .toggle {
-        margin: 0 auto 28px;
+        margin: 0 auto 24px;
         max-width: 250px;
+    }
+
+    .inputGroup input {
+        padding: 12px 14px 12px 40px;
+        font-size: 13px;
+    }
+
+    .inputIcon {
+        left: 12px;
+    }
+
+    .submitBtn {
+        padding: 12px;
+        font-size: 13px;
     }
 }
