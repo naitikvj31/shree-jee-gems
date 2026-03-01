@@ -468,6 +468,8 @@
 
     .menuToggle {
         display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .currWrap {
@@ -476,11 +478,24 @@
 }
 
 @media (max-width: 480px) {
+    .navbar {
+        padding: 10px 12px;
+    }
+
+    .logo {
+        gap: 8px;
+    }
+
     .logoImg {
-        height: 40px;
+        height: 36px;
     }
 
     .logoMain {
-        font-size: 16px;
+        font-size: 15px;
+    }
+
+    .iconBtn {
+        width: 38px;
+        height: 38px;
     }
 }

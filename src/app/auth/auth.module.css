@@ -29,7 +29,7 @@
     justify-content: center;
 }
 
-.brandContent {}
+
 
 .brandIcon {
     font-size: 40px;
@@ -277,6 +277,16 @@
     }
 
     .formSide {
-        padding: 32px 24px;
+        padding: 32px 20px;
+    }
+
+    .formTitle,
+    .formSubtitle {
+        text-align: center;
+    }
+
+    .toggle {
+        margin: 0 auto 28px;
+        max-width: 250px;
     }
 }

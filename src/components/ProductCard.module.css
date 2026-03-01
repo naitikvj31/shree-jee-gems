@@ -432,43 +432,46 @@
     }
 
     .ratingRow {
-        margin-bottom: 12px;
+        margin-bottom: 8px;
     }
 
     .info {
-        padding: 12px;
+        padding: 10px 8px 12px;
     }
 
     .name {
-        font-size: 14px;
+        font-size: 13px;
         -webkit-line-clamp: 2;
         line-clamp: 2;
+        margin-bottom: 6px;
     }
 
     .price {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .oldPrice {
-        font-size: 12px;
+        font-size: 11px;
+    }
+
+    .priceRow {
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+        gap: 6px;
     }
 
     .addToCartBtn {
-        padding: 10px;
+        padding: 8px 10px;
         font-size: 10px;
-        letter-spacing: 1px;
+        letter-spacing: 0.5px;
         border-width: 1px;
-        gap: 6px;
+        gap: 4px;
+        background: #12224A;
+        color: white;
+        margin-top: auto;
     }
 
     .hoverActions {
         display: none;
-    }
-
-    /* Make button prominent on mobile since there is no hover action */
-    .addToCartBtn {
-        background: #12224A;
-        color: white;
-        margin-top: 8px;
     }
 }

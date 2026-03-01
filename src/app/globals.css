@@ -67,6 +67,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -76,6 +77,7 @@ body {
   color: var(--text-secondary);
   background: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 h1,

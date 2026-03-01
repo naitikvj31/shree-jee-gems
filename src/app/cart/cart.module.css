@@ -532,9 +532,21 @@
         padding: 16px;
     }
 
+    /* Wrap image and info closely so it fits small screens */
+    .itemTopLevel {
+        display: flex;
+        gap: 16px;
+        width: 100%;
+    }
+
     .itemImage {
         width: 100px;
         height: 100px;
+        flex-shrink: 0;
+    }
+
+    .itemContent {
+        width: 100%;
     }
 
     .itemInfoRow {
@@ -549,9 +561,14 @@
     .itemBottomRow {
         flex-wrap: wrap;
         margin-top: 16px;
-        gap: 16px;
+        gap: 12px;
         width: 100%;
         justify-content: space-between;
+    }
+
+    .itemQuantity {
+        height: 36px;
+        width: 100px;
     }
 
     .itemActions {
@@ -564,5 +581,10 @@
 
     .actionDivider {
         display: none;
+    }
+
+    .checkoutBtn {
+        padding: 14px;
+        font-size: 14px;
     }
 }

@@ -58,9 +58,10 @@ const navLinks = [
     {
         name: 'Shop By Price',
         children: [
-            { name: 'Under ₹500', slug: 'all' },
-            { name: '₹500 - ₹1000', slug: 'all' },
-            { name: 'Above ₹1000', slug: 'all' },
+            { name: 'Under ₹5000', slug: 'all' },
+            { name: '₹5000 - ₹10000', slug: 'all' },
+            { name: '₹10000 - ₹20000', slug: 'all' },
+            { name: 'Above ₹20000', slug: 'all' },
         ]
     }
 ];
