@@ -111,17 +111,18 @@
     padding: 10px;
     font-size: 13px;
     font-weight: 600;
-    color: var(--text-light);
+    color: #64748B;
     background: transparent;
     border-radius: var(--radius-full);
     cursor: pointer;
     transition: all 0.25s ease;
+    border: none;
 }
 
 .toggleActive {
-    background: var(--gold) !important;
-    color: var(--white) !important;
-    box-shadow: var(--shadow-gold);
+    background: #12224A !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(18, 34, 74, 0.15);
 }
 
 /* Form */
@@ -209,8 +210,9 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--white);
-    background: var(--gold);
+    color: #FFFFFF;
+    background: #12224A;
+    border: none;
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all 0.3s ease;
@@ -218,9 +220,9 @@
 }
 
 .submitBtn:hover {
-    background: var(--gold-hover);
+    background: #1A326E;
     transform: translateY(-2px);
-    box-shadow: var(--shadow-gold);
+    box-shadow: 0 8px 24px rgba(18, 34, 74, 0.2);
 }
 
 .submitBtn:disabled {
