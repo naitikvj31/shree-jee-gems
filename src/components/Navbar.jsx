@@ -108,7 +108,6 @@ export default function Navbar() {
                     <Image src="/logo.png" alt="Shree Jee Jewels" width={56} height={56} className={styles.logoImg} priority />
                     <div className={styles.logoText}>
                         <span className={styles.logoMain}>SHREE JEE JEWELS</span>
-                        <span className={styles.logoSub}>BY RAHUL VIJAY</span>
                     </div>
                 </Link>
 

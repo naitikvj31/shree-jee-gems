@@ -35,7 +35,6 @@ export default function Footer() {
                         </div>
                         <div className={`${styles.accordionBody} ${isMobile && openSection !== 'about' ? styles.closed : ''}`}>
                             <div className={styles.contactInfo}>
-                                <p>Rahul Vijay (Shree Jee Jewels)</p>
                                 <p>Address: 550-A, Near Chogan Stadium, Gangori Bazar Inside Gangori Gate, Choti Chopar, Jaipur-302001, Rajasthan</p>
                                 <p>Email ID: info@shreejeejewels.com</p>
                                 <p>Contact No.: +91-7737493229</p>

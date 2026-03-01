@@ -115,11 +115,30 @@
     transition: color 0.25s, transform 0.2s;
     cursor: pointer;
     white-space: nowrap;
+    position: relative;
+}
+
+.navLink::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 14px;
+    width: calc(100% - 28px);
+    height: 2px;
+    background-color: #FFFFFF;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navLink:hover {
     color: #FFFFFF;
-    transform: translateY(-1px);
+}
+
+.navLink:hover::after,
+.navLink.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 .aboutBrandLink {
