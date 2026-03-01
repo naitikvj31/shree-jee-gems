@@ -4,7 +4,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import styles from './WhatsAppButton.module.css';
 
 export default function WhatsAppButton() {
-    const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+1234567890';
+    const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '7737493229';
     const message = encodeURIComponent('Hello! I am interested in your jewelry collection. Could you please help me?');
 
     return (

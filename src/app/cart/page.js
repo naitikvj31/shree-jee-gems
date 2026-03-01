@@ -14,7 +14,7 @@ export default function CartPage() {
                 <HiOutlineShoppingBag size={64} className={styles.emptyIcon} />
                 <h2>Your Cart is Empty</h2>
                 <p>Discover our exquisite jewelry collections and add your favorites to cart.</p>
-                <Link href="/products" className="btn btn-primary btn-lg">
+                <Link href="/products" className={styles.emptyBtn}>
                     Browse Collections <HiOutlineArrowRight />
                 </Link>
             </div>
@@ -61,8 +61,8 @@ export default function CartPage() {
                                         <span className={styles.unitPrice}>{convertPrice(item.price)} each</span>
                                     )}
                                 </div>
-                                <button className={styles.removeBtn} onClick={() => removeFromCart(item.slug, item.size)}>
-                                    <HiOutlineTrash size={18} />
+                                <button className={styles.removeBtn} onClick={() => removeFromCart(item.slug, item.size)} title="Remove item">
+                                    <HiOutlineTrash size={20} />
                                 </button>
                             </div>
                         ))}
@@ -92,7 +92,7 @@ export default function CartPage() {
                             Add {convertPrice(500 - cartTotal)} more for free shipping!
                         </p>
                     )}
-                    <button className="btn btn-primary btn-lg" style={{ width: '100%', marginTop: '16px' }}>
+                    <button className={styles.checkoutBtn}>
                         Proceed to Checkout
                     </button>
                     <Link href="/products" className={styles.continueShopping}>

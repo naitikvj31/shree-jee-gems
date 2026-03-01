@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { seedProducts } from '@/data/seedProducts';
+import seedProducts from '@/data/seedProducts';
 
 function sanitizeString(str) {
     if (typeof str !== 'string') return '';

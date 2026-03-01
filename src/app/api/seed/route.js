@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Product from '@/models/Product';
-import { seedProducts } from '@/data/seedProducts';
+import seedProducts from '@/data/seedProducts';
 
 export async function POST(request) {
     try {

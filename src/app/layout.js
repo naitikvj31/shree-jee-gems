@@ -18,9 +18,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <CartProvider>
             <Navbar />
-            <main style={{
-              marginTop: 'calc(var(--navbar-height) + var(--category-bar-height))'
-            }}>
+            <main>
               {children}
             </main>
             <Footer />

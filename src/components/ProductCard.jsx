@@ -7,23 +7,33 @@ import { useCart } from '@/context/CartContext';
 import { HiOutlineHeart, HiHeart, HiOutlineShoppingCart, HiStar } from 'react-icons/hi';
 import styles from './ProductCard.module.css';
 
-// Jewelry category gradients for beautiful visual placeholders
+// Sophisticated Silver/Blue gradients for placeholders
 const categoryGradients = {
-    rings: 'linear-gradient(145deg, #FDF2E9 0%, #F5CBA7 40%, #E8DAEF 100%)',
-    necklaces: 'linear-gradient(145deg, #EBF5FB 0%, #D4E6F1 40%, #FADBD8 100%)',
-    earrings: 'linear-gradient(145deg, #FDEDEC 0%, #F5B7B1 40%, #F9E79F 100%)',
-    bracelets: 'linear-gradient(145deg, #E8F8F5 0%, #A3E4D7 40%, #D5F5E3 100%)',
-    bangles: 'linear-gradient(145deg, #F9EBEA 0%, #E8DAEF 40%, #D5D8DC 100%)',
-    pendants: 'linear-gradient(145deg, #FEF9E7 0%, #F9E79F 40%, #FDEBD0 100%)',
+    crown: 'linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%)',
+    earrings: 'linear-gradient(135deg, #F8FAFC 0%, #CBD5E1 100%)',
+    tops: 'linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%)',
+    chains: 'linear-gradient(135deg, #F1F5F9 0%, #94A3B8 100%)',
+    mangtika: 'linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%)',
+    necklace: 'linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%)',
+    chokar: 'linear-gradient(135deg, #F1F5F9 0%, #CBD5E1 100%)',
+    'bridal-necklace': 'linear-gradient(135deg, #E0E7FF 0%, #E2E8F0 100%)',
+    bracelet: 'linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%)',
+    bangles: 'linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%)',
+    rings: 'linear-gradient(135deg, #F1F5F9 0%, #CBD5E1 100%)',
+    anklets: 'linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%)',
+    'toe-rings': 'linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%)',
+    purses: 'linear-gradient(135deg, #F1F5F9 0%, #94A3B8 100%)',
+    watches: 'linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%)',
+    pendant: 'linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%)',
+    pandora: 'linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%)',
 };
 
 const categoryEmojis = {
-    rings: '💍',
-    necklaces: '📿',
-    earrings: '✨',
-    bracelets: '⌚',
-    bangles: '🔵',
-    pendants: '🔶',
+    crown: '👑', earrings: '✨', tops: '💠', chains: '🔗',
+    mangtika: '🌸', necklace: '📿', chokar: '💫', 'bridal-necklace': '👰',
+    bracelet: '⌚', bangles: '🧿', rings: '💍', anklets: '🦶',
+    'toe-rings': '🔘', purses: '👛', watches: '⏱', pendant: '🔶',
+    pandora: '💎',
 };
 
 export default function ProductCard({ product, index = 0 }) {

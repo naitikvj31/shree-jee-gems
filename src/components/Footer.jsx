@@ -1,87 +1,131 @@
 'use client';
 
 import Link from 'next/link';
-import { HiOutlineLocationMarker, HiOutlinePhone, HiOutlineMail } from 'react-icons/hi';
+import { useState, useEffect } from 'react';
 import { FaFacebookF, FaInstagram, FaPinterestP, FaYoutube } from 'react-icons/fa';
+import { HiOutlineArrowRight, HiOutlineChevronDown, HiOutlineChevronUp } from 'react-icons/hi';
 import styles from './Footer.module.css';
 
 export default function Footer() {
+    const [email, setEmail] = useState('');
+    const [openSection, setOpenSection] = useState('about');
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const toggleSection = (section) => {
+        if (!isMobile) return;
+        setOpenSection(openSection === section ? '' : section);
+    };
+
     return (
         <footer className={styles.footer}>
             <div className={`container ${styles.footerInner}`}>
                 <div className={styles.footerGrid}>
-                    {/* Brand */}
-                    <div className={styles.brandCol}>
-                        <span className={styles.footerLogo}>Shree Jee</span>
-                        <span className={styles.footerLogoSub}>J E W E L S</span>
-                        <p className={styles.footerDesc}>
-                            Crafting exquisite jewelry since generations. Premium gold, diamond &amp; gemstone jewelry shipped worldwide.
-                        </p>
-                        <div className={styles.socialLinks}>
-                            <a href="#" className={styles.socialLink} aria-label="Facebook"><FaFacebookF /></a>
-                            <a href="#" className={styles.socialLink} aria-label="Instagram"><FaInstagram /></a>
-                            <a href="#" className={styles.socialLink} aria-label="Pinterest"><FaPinterestP /></a>
-                            <a href="#" className={styles.socialLink} aria-label="YouTube"><FaYoutube /></a>
+                    {/* About */}
+                    <div className={styles.footerCol}>
+                        <div className={styles.accordionHead} onClick={() => toggleSection('about')}>
+                            <h4>About Shree Jee Jewels</h4>
+                            {isMobile && (openSection === 'about' ? <HiOutlineChevronUp /> : <HiOutlineChevronDown />)}
+                        </div>
+                        <div className={`${styles.accordionBody} ${isMobile && openSection !== 'about' ? styles.closed : ''}`}>
+                            <div className={styles.contactInfo}>
+                                <p>Rahul Vijay (Shree Jee Jewels)</p>
+                                <p>Address: 550-A, Near Chogan Stadium, Gangori Bazar Inside Gangori Gate, Choti Chopar, Jaipur-302001, Rajasthan</p>
+                                <p>Email ID: info@shreejeejewels.com</p>
+                                <p>Contact No.: +91-7737493229</p>
+                            </div>
                         </div>
                     </div>
 
-                    {/* Quick Links */}
+                    {/* HELP */}
                     <div className={styles.footerCol}>
-                        <h4>Quick Links</h4>
-                        <Link href="/">Home</Link>
-                        <Link href="/about">About Us</Link>
-                        <Link href="/contact">Contact Us</Link>
-                        <Link href="/cart">Shopping Cart</Link>
-                        <Link href="/wishlist">Wishlist</Link>
-                        <Link href="/track-order">Track Order</Link>
+                        <div className={styles.accordionHead} onClick={() => toggleSection('help')}>
+                            <h4>HELP</h4>
+                            {isMobile && (openSection === 'help' ? <HiOutlineChevronUp /> : <HiOutlineChevronDown />)}
+                        </div>
+                        <div className={`${styles.accordionBody} ${isMobile && openSection !== 'help' ? styles.closed : ''}`}>
+                            <Link href="/privacy-policy">Privacy Policy</Link>
+                            <Link href="/refund-policy">Refund Policy</Link>
+                            <Link href="/shipping-policy">Shipping Policy</Link>
+                            <Link href="/terms">Terms &amp; Conditions</Link>
+                            <Link href="/faq">FAQ</Link>
+                        </div>
                     </div>
 
-                    {/* Categories */}
+                    {/* KNOW MORE */}
                     <div className={styles.footerCol}>
-                        <h4>Categories</h4>
-                        <Link href="/?category=rings">Rings</Link>
-                        <Link href="/?category=necklaces">Necklaces</Link>
-                        <Link href="/?category=earrings">Earrings</Link>
-                        <Link href="/?category=bracelets">Bracelets</Link>
-                        <Link href="/?category=bangles">Bangles</Link>
-                        <Link href="/?category=pendants">Pendants</Link>
+                        <div className={styles.accordionHead} onClick={() => toggleSection('know')}>
+                            <h4>KNOW MORE</h4>
+                            {isMobile && (openSection === 'know' ? <HiOutlineChevronUp /> : <HiOutlineChevronDown />)}
+                        </div>
+                        <div className={`${styles.accordionBody} ${isMobile && openSection !== 'know' ? styles.closed : ''}`}>
+                            <Link href="/materials">Our Materials</Link>
+                            <Link href="/glossary">Glossary</Link>
+                            <Link href="/care-guide">Care Guide</Link>
+                            <Link href="/wholesale">Wholesale</Link>
+                            <Link href="/client-diaries">Client Diaries</Link>
+                            <Link href="/blogs">Blogs</Link>
+                        </div>
                     </div>
 
-                    {/* Contact */}
+                    {/* ABOUT THE BRAND */}
                     <div className={styles.footerCol}>
-                        <h4>Contact Us</h4>
-                        <div className={styles.contactItem}>
-                            <HiOutlineLocationMarker size={16} />
-                            <span>Bangkok · New York · Tokyo · Johannesburg</span>
+                        <div className={styles.accordionHead} onClick={() => toggleSection('brand')}>
+                            <h4>ABOUT THE BRAND</h4>
+                            {isMobile && (openSection === 'brand' ? <HiOutlineChevronUp /> : <HiOutlineChevronDown />)}
                         </div>
-                        <div className={styles.contactItem}>
-                            <HiOutlinePhone size={16} />
-                            <span>+66 2 XXX XXXX</span>
+                        <div className={`${styles.accordionBody} ${isMobile && openSection !== 'brand' ? styles.closed : ''}`}>
+                            <Link href="/about">About Shree Jee Jewels</Link>
+                            <Link href="/exhibitions">Exhibitions</Link>
+                            <Link href="/press">Press / Media</Link>
                         </div>
-                        <div className={styles.contactItem}>
-                            <HiOutlineMail size={16} />
-                            <span>info@shreejeejewels.com</span>
+                    </div>
+
+                    {/* Newsletter & Socials */}
+                    <div className={styles.footerCol}>
+                        <div className={styles.accordionHead} onClick={() => toggleSection('social')}>
+                            <h4>STAY CONNECTED</h4>
+                            {isMobile && (openSection === 'social' ? <HiOutlineChevronUp /> : <HiOutlineChevronDown />)}
                         </div>
-                        <div className={styles.flagRow}>
-                            <span title="Thailand">🇹🇭</span>
-                            <span title="USA">🇺🇸</span>
-                            <span title="Japan">🇯🇵</span>
-                            <span title="South Africa">🇿🇦</span>
+                        <div className={`${styles.accordionBody} ${isMobile && openSection !== 'social' ? styles.closed : ''}`}>
+                            <div className={styles.newsletter}>
+                                <input
+                                    type="email"
+                                    placeholder="Email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className={styles.newsletterInput}
+                                />
+                                <button className={styles.newsletterBtn}>
+                                    <HiOutlineArrowRight size={16} />
+                                </button>
+                            </div>
+                            <div className={styles.socialLinks}>
+                                <a href="https://instagram.com/shree_jee_jewels" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
+                                <a href="#" aria-label="Facebook"><FaFacebookF /></a>
+                                <a href="#" aria-label="Pinterest"><FaPinterestP /></a>
+                                <a href="#" aria-label="YouTube"><FaYoutube /></a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
+                {/* Bottom */}
                 <div className={styles.footerBottom}>
-                    <p className={styles.footerCopy}>
-                        © 2024 Shree Jee Jewels. All rights reserved.
-                    </p>
                     <div className={styles.paymentIcons}>
-                        <span className={styles.payIcon}>VISA</span>
-                        <span className={styles.payIcon}>MC</span>
-                        <span className={styles.payIcon}>AMEX</span>
-                        <span className={styles.payIcon}>PAYPAL</span>
+                        <span>VISA</span>
+                        <span>MC</span>
+                        <span>AMEX</span>
+                        <span>UPI</span>
+                        <span>PAYPAL</span>
                     </div>
+                    <p>© 2026, Shree Jee Jewels. All rights reserved.</p>
                 </div>
             </div>
         </footer>

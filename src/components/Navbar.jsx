@@ -2,20 +2,67 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
-import { HiOutlineShoppingCart, HiOutlineHeart, HiOutlineMenu, HiOutlineX, HiOutlineSearch, HiOutlineChevronDown, HiOutlineTruck } from 'react-icons/hi';
+import { HiOutlineShoppingCart, HiOutlineMenu, HiOutlineX, HiOutlineSearch, HiOutlineChevronDown, HiOutlineUser } from 'react-icons/hi';
 import styles from './Navbar.module.css';
 
-const categories = [
-    { name: 'All', slug: 'all' },
-    { name: 'Rings', slug: 'rings' },
-    { name: 'Necklaces', slug: 'necklaces' },
-    { name: 'Earrings', slug: 'earrings' },
-    { name: 'Bracelets', slug: 'bracelets' },
-    { name: 'Pendants', slug: 'pendants' },
-    { name: 'Bangles', slug: 'bangles' },
+// Exact Twisha Categories Structure
+const navLinks = [
+    {
+        name: 'Shop By Category',
+        children: [
+            { name: 'Crown', slug: 'crown' },
+            { name: 'Earrings', slug: 'earrings' },
+            { name: 'Tops', slug: 'tops' },
+            { name: 'Chains', slug: 'chains' },
+            { name: 'Mangtika', slug: 'mangtika' },
+            { name: 'Necklace', slug: 'necklace' },
+            { name: 'Chokar', slug: 'chokar' },
+            { name: 'Long bridal necklace', slug: 'long-bridal-necklace' },
+            { name: 'Bracelet', slug: 'bracelet' },
+            { name: 'Bangles', slug: 'bangles' },
+            { name: 'Rings', slug: 'rings' },
+            { name: 'Anklets', slug: 'anklets' },
+            { name: 'Toerings', slug: 'toerings' },
+            { name: 'Watches', slug: 'watches' },
+            { name: 'Pendants', slug: 'pendant' },
+            { name: 'Pandora', slug: 'pandora' },
+            { name: 'Purses', slug: 'purses' },
+        ]
+    },
+    {
+        name: 'For Kids',
+        children: [
+            { name: 'Kids Bracelets', slug: 'bracelet' },
+            { name: 'Kids Earrings', slug: 'earrings' },
+        ]
+    },
+    { name: 'For Mens', slug: '/?category=chains' },
+    {
+        name: 'Collections',
+        children: [
+            { name: 'Classic Silver', slug: 'all' },
+            { name: 'Bridal Selection', slug: 'bridal-necklace' },
+        ]
+    },
+    {
+        name: 'Gifting Guide',
+        children: [
+            { name: 'Gifts Under ₹999', slug: 'all' },
+            { name: 'Premium Gifts', slug: 'all' },
+        ]
+    },
+    {
+        name: 'Shop By Price',
+        children: [
+            { name: 'Under ₹500', slug: 'all' },
+            { name: '₹500 - ₹1000', slug: 'all' },
+            { name: 'Above ₹1000', slug: 'all' },
+        ]
+    }
 ];
 
 const currencies = ['INR', 'USD', 'THB', 'JPY', 'ZAR'];
@@ -23,21 +70,15 @@ const currencies = ['INR', 'USD', 'THB', 'JPY', 'ZAR'];
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
-    const [activeCategory, setActiveCategory] = useState('all');
+    const [showSearch, setShowSearch] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState(null);
     const [showCurrency, setShowCurrency] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
     const { cartCount, wishlist, currency, setCurrency, currencyRates } = useCart();
-    const { isLoggedIn, user } = useAuth();
+    const { isLoggedIn } = useAuth();
 
-    useEffect(() => { setIsOpen(false); }, [pathname]);
-
-    useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 10);
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    useEffect(() => { setIsOpen(false); setActiveDropdown(null); }, [pathname]);
 
     useEffect(() => {
         document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -49,163 +90,154 @@ export default function Navbar() {
         if (searchQuery.trim()) {
             router.push(`/?search=${encodeURIComponent(searchQuery.trim())}`);
             setSearchQuery('');
+            setShowSearch(false);
         }
-    };
-
-    const handleCategoryClick = (slug) => {
-        setActiveCategory(slug);
-        router.push(slug === 'all' ? '/' : `/?category=${slug}`);
     };
 
     return (
         <>
-            {/* ═══ ROW 1: Main Navigation ═══ */}
-            <nav className={`${styles.navbar} ${scrolled ? styles.navScrolled : ''}`}>
-                <div className={styles.navInner}>
-                    {/* Left: Logo */}
-                    <Link href="/" className={styles.logo}>
-                        <span className={styles.logoGem}>💎</span>
-                        <div className={styles.logoWrap}>
-                            <span className={styles.logoText}>Shree Jee Jewels</span>
-                            <span className={styles.logoTag}>Premium Jewelry Since 1998</span>
-                        </div>
+            {/* ═══ ANNOUNCEMENT BAR (Light Silver) ═══ */}
+            <div className={styles.announcement}>
+                <span>Enjoy 11% Off Your First Purchase — Our Welcome Gift to You | USE CODE: SHREEJEE11 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enjoy 11% Off Your First Purchase — Our Welcome Gift to You | USE CODE: SHREEJEE11</span>
+            </div>
+
+            {/* ═══ MAIN NAV ═══ */}
+            <nav className={styles.navbar}>
+                {/* Logo */}
+                <Link href="/" className={styles.logo}>
+                    <Image src="/logo.png" alt="Shree Jee Jewels" width={56} height={56} className={styles.logoImg} priority />
+                    <div className={styles.logoText}>
+                        <span className={styles.logoMain}>SHREE JEE JEWELS</span>
+                        <span className={styles.logoSub}>BY RAHUL VIJAY</span>
+                    </div>
+                </Link>
+
+                {/* Center Nav Links (Two rows conceptually, but flex wrap handles it if needed) */}
+                <div className={styles.navCenter}>
+                    {/* Top Row Links */}
+                    <div className={styles.navLinksRow}>
+                        {navLinks.map((link, i) => (
+                            <div
+                                key={i}
+                                className={styles.navItem}
+                                onMouseEnter={() => link.children && setActiveDropdown(i)}
+                                onMouseLeave={() => setActiveDropdown(null)}
+                            >
+                                {link.children ? (
+                                    <button className={styles.navLink}>
+                                        {link.name} <HiOutlineChevronDown size={12} style={{ marginLeft: 2, marginTop: 2 }} />
+                                    </button>
+                                ) : (
+                                    <Link href={link.slug} className={styles.navLink}>{link.name}</Link>
+                                )}
+                                {link.children && activeDropdown === i && (
+                                    <div className={`${styles.dropdown} ${link.children.length > 6 ? styles.dropdownGrid : ''}`}>
+                                        {link.children.map(child => (
+                                            <Link
+                                                key={child.name}
+                                                href={`/?category=${child.slug}`}
+                                                className={styles.dropdownLink}
+                                            >
+                                                {child.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                    {/* Bottom Row Link */}
+                    <Link href="/about" className={styles.aboutBrandLink}>About The Brand</Link>
+                </div>
+
+                {/* Right Icons */}
+                <div className={styles.navRight}>
+                    {/* Currency */}
+                    <div className={styles.currWrap}
+                        onMouseEnter={() => setShowCurrency(true)}
+                        onMouseLeave={() => setShowCurrency(false)}
+                    >
+                        <button className={styles.iconBtn}>
+                            <span style={{ fontSize: 12, marginRight: 2 }}>{currencyRates[currency]?.symbol}</span>
+                            <HiOutlineChevronDown size={10} />
+                        </button>
+                        {showCurrency && (
+                            <div className={styles.dropdown} style={{ right: 0, left: 'auto', minWidth: 100, borderTop: 'none' }}>
+                                {currencies.map(c => (
+                                    <button key={c} className={`${styles.dropdownLink} ${c === currency ? styles.dropActive : ''}`}
+                                        onClick={() => { setCurrency(c); setShowCurrency(false); }}
+                                        style={{ padding: '8px 16px', fontSize: 12 }}
+                                    >
+                                        {currencyRates[c]?.symbol} {c}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    <button className={styles.iconBtn} onClick={() => setShowSearch(!showSearch)}>
+                        <HiOutlineSearch size={22} />
+                    </button>
+                    <Link href={isLoggedIn ? '/account' : '/auth'} className={styles.iconBtn}>
+                        <HiOutlineUser size={22} />
+                    </Link>
+                    <Link href="/cart" className={styles.iconBtn}>
+                        <HiOutlineShoppingCart size={22} />
+                        {cartCount > 0 && <span className={styles.cartBadge}>{cartCount}</span>}
                     </Link>
 
-                    {/* Center: Search */}
-                    <form onSubmit={handleSearch} className={styles.searchBar}>
-                        <HiOutlineSearch size={18} className={styles.searchIcon} />
+                    <button className={styles.menuToggle} onClick={() => setIsOpen(!isOpen)}>
+                        {isOpen ? <HiOutlineX size={26} /> : <HiOutlineMenu size={26} />}
+                    </button>
+                </div>
+            </nav>
+
+            {/* ═══ SEARCH BAR (expandable) ═══ */}
+            {showSearch && (
+                <div className={styles.searchExpand}>
+                    <form onSubmit={handleSearch} className={`container ${styles.searchForm}`}>
+                        <HiOutlineSearch size={20} />
                         <input
                             type="text"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            placeholder="Search for gold rings, diamond necklaces, bangles..."
+                            placeholder="Looking for something specific?"
                             className={styles.searchInput}
+                            autoFocus
                         />
-                    </form>
-
-                    {/* Right: Actions */}
-                    <div className={styles.rightActions}>
-                        {/* Track Order */}
-                        <Link href="/track-order" className={styles.navLink}>
-                            <HiOutlineTruck size={20} />
-                            <span>Track Order</span>
-                        </Link>
-
-                        {/* Wishlist */}
-                        <Link href="/wishlist" className={styles.navLink}>
-                            <HiOutlineHeart size={20} />
-                            <span>Wishlist</span>
-                            {wishlist.length > 0 && <span className={styles.badge}>{wishlist.length}</span>}
-                        </Link>
-
-                        {/* Cart */}
-                        <Link href="/cart" className={styles.navLink}>
-                            <HiOutlineShoppingCart size={20} />
-                            <span>Cart</span>
-                            {cartCount > 0 && <span className={styles.badge}>{cartCount}</span>}
-                        </Link>
-
-                        {/* Currency */}
-                        <div className={styles.currencyWrap}>
-                            <button onClick={() => setShowCurrency(!showCurrency)} className={styles.currencyBtn}>
-                                {currencyRates[currency]?.symbol} {currency}
-                                <HiOutlineChevronDown size={12} />
-                            </button>
-                            {showCurrency && (
-                                <div className={styles.currencyDrop}>
-                                    {currencies.map(c => (
-                                        <button key={c} className={c === currency ? styles.currActive : ''} onClick={() => { setCurrency(c); setShowCurrency(false); }}>
-                                            {currencyRates[c]?.symbol} {c}
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Auth */}
-                        {isLoggedIn ? (
-                            <Link href="/account" className={styles.accountChip}>
-                                <span className={styles.accountAvatar}>{user?.name?.charAt(0)}</span>
-                                <span className={styles.accountName}>{user?.name?.split(' ')[0]}</span>
-                            </Link>
-                        ) : (
-                            <div className={styles.authBtns}>
-                                <Link href="/auth" className={styles.signInBtn}>Sign In</Link>
-                                <Link href="/auth" className={styles.signUpBtn}>Sign Up</Link>
-                            </div>
-                        )}
-
-                        {/* Mobile */}
-                        <button className={styles.menuBtn} onClick={() => setIsOpen(!isOpen)}>
-                            {isOpen ? <HiOutlineX size={24} /> : <HiOutlineMenu size={24} />}
+                        <button type="button" onClick={() => setShowSearch(false)} className={styles.searchClose}>
+                            <HiOutlineX size={20} />
                         </button>
-                    </div>
+                    </form>
                 </div>
-            </nav>
+            )}
 
-            {/* ═══ ROW 2: Category Tabs ═══ */}
-            <div className={styles.categoryBar}>
-                <div className={styles.categoryInner}>
-                    <div className={styles.catScroll}>
-                        {categories.map(cat => (
-                            <button
-                                key={cat.name}
-                                className={`${styles.catBtn} ${activeCategory === cat.slug ? styles.catActive : ''}`}
-                                onClick={() => handleCategoryClick(cat.slug)}
-                            >
-                                {cat.name}
-                            </button>
-                        ))}
-                    </div>
-                    <div className={styles.catLinks}>
-                        <Link href="/about" className={styles.catLink}>About</Link>
-                        <Link href="/contact" className={styles.catLink}>Contact</Link>
-                    </div>
-                </div>
-            </div>
-
-            {/* ═══ Mobile Drawer ═══ */}
+            {/* ═══ MOBILE DRAWER ═══ */}
             <div className={`${styles.overlay} ${isOpen ? styles.overlayOpen : ''}`} onClick={() => setIsOpen(false)} />
             <div className={`${styles.drawer} ${isOpen ? styles.drawerOpen : ''}`}>
                 <div className={styles.drawerHead}>
-                    <span className={styles.drawerLogo}>💎 Shree Jee Jewels</span>
-                    <button onClick={() => setIsOpen(false)}><HiOutlineX size={22} /></button>
+                    <span className={styles.drawerLogo}>SHREE JEE</span>
+                    <button onClick={() => setIsOpen(false)}><HiOutlineX size={24} /></button>
                 </div>
                 <div className={styles.drawerBody}>
-                    {!isLoggedIn ? (
-                        <div className={styles.drawerAuthBox}>
-                            <Link href="/auth" onClick={() => setIsOpen(false)} className={styles.drawerSignIn}>Sign In</Link>
-                            <Link href="/auth" onClick={() => setIsOpen(false)} className={styles.drawerSignUp}>Create Account</Link>
-                        </div>
-                    ) : (
-                        <Link href="/account" onClick={() => setIsOpen(false)} className={styles.drawerAccountChip}>
-                            <span className={styles.accountAvatar}>{user?.name?.charAt(0)}</span>
-                            My Account
-                        </Link>
-                    )}
-                    <Link href="/" onClick={() => setIsOpen(false)}>🏠 Home</Link>
-                    {categories.filter((_, i) => i > 0).map(cat => (
-                        <button key={cat.slug} onClick={() => { handleCategoryClick(cat.slug); setIsOpen(false); }} className={styles.drawerLink}>
-                            {cat.name}
-                        </button>
+                    {navLinks.map((link, i) => (
+                        link.children ? (
+                            <div key={i} className={styles.drawerSection}>
+                                <span className={styles.drawerSectionTitle}>{link.name}</span>
+                                {link.children.map(child => (
+                                    <Link key={child.name} href={`/?category=${child.slug}`} onClick={() => setIsOpen(false)} className={styles.drawerLink}>
+                                        {child.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        ) : (
+                            <Link key={i} href={link.slug || '#'} onClick={() => setIsOpen(false)} className={styles.drawerLinkMain}>{link.name}</Link>
+                        )
                     ))}
                     <div className={styles.drawerDivider} />
-                    <Link href="/track-order" onClick={() => setIsOpen(false)}>📦 Track Order</Link>
-                    <Link href="/about" onClick={() => setIsOpen(false)}>ℹ️ About Us</Link>
-                    <Link href="/contact" onClick={() => setIsOpen(false)}>✉️ Contact</Link>
-                    <Link href="/wishlist" onClick={() => setIsOpen(false)}>♡ Wishlist ({wishlist.length})</Link>
-                    <Link href="/cart" onClick={() => setIsOpen(false)}>🛒 Cart ({cartCount})</Link>
-                    <div className={styles.drawerDivider} />
-                    <div className={styles.drawerCurrency}>
-                        <span className={styles.drawerCurrLabel}>Currency</span>
-                        <div className={styles.drawerCurrBtns}>
-                            {currencies.map(c => (
-                                <button key={c} className={c === currency ? styles.currActive : ''} onClick={() => setCurrency(c)}>
-                                    {currencyRates[c]?.symbol} {c}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
+                    <Link href="/about" onClick={() => setIsOpen(false)} className={styles.drawerLinkMain}>About The Brand</Link>
+                    <Link href="/wishlist" onClick={() => setIsOpen(false)} className={styles.drawerLinkMain}>Wishlist ({wishlist.length})</Link>
+                    <Link href="/track-order" onClick={() => setIsOpen(false)} className={styles.drawerLinkMain}>Track Order</Link>
                 </div>
             </div>
         </>

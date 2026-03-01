@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { seedProducts } from '@/data/seedProducts';
+import seedProducts from '@/data/seedProducts';
 
 // Sanitize query parameters
 function sanitizeString(str) {
